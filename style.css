@@ -1,3 +1,10 @@
+:root {
+    font-size: clamp(.9rem + 1vh, 1.5rem, 2rem);
+    --neutral-clr-100: 0, 0%, 100%;
+    --neutral-clr-800: 222, 60%, 25%;
+    --neutral-clr-900: 222, 70%, 15%;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,6 +12,57 @@
 }
 
 body {
-    background-color: hsl(222, 60%, 17%);
-    color: hsl(0, 0%, 100%);
+    background-color: hsl(var(--neutral-clr-900));
+    color: hsl(var(--neutral-clr-100));
+    font-family: 'Open Sans', sans-serif;
+    min-height: 100vh;
+}
+
+main {
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+button {
+    cursor: pointer;
+    font: inherit;
+    border: none;
+    color: hsl(var(--neutral-clr-100));
+    background-color: hsl(var(--neutral-clr-800));
+    padding: .5rem 1rem;
+    font-size: .75rem;
+    border-radius: .25rem;
+}
+
+
+.button-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.color {
+    --dimension: calc(6rem + 2vw);
+    width: var(--dimension);
+    height: var(--dimension);
+    background-color: white;
+}
+    
+/* Utility classes */
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: min(50rem + 1vw, 95%);
+    margin-inline: auto;
+    flex-direction: column;
+    gap: 2rem;
 }
