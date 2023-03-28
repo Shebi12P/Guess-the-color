@@ -46,11 +46,12 @@ button {
     gap: 1rem;
 }
 
-.color {
+.color-area {
+    --bg-color: white;
     --dimension: calc(6rem + 2vw);
     width: var(--dimension);
     height: var(--dimension);
-    background-color: white;
+    background-color: var(--bg-color);
 }
     
 /* Utility classes */
