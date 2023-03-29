@@ -11,14 +11,8 @@ const genererateRBGColor = () => {
         'red': red,
         'green': green,
         'blue': blue
-    }
+    };
 }
-
-
-const rightColor = genererateRBGColor();
-const color2 = genererateRBGColor();
-const color3 = genererateRBGColor();
-const colors = [rightColor, color2, color3];
 
 const insertRGBColor = (rightColor) => {
     const red = rightColor.red;
@@ -28,7 +22,7 @@ const insertRGBColor = (rightColor) => {
     colorArea.style.setProperty('--bg-color', `rgb(${red}, ${green}, ${blue})`);
 }
 
-const insertButtonColors = () => {
+const insertButtonColors = (colors) => {
     colorButtons.forEach((button) => {
         let randomIndex = Math.floor(Math.random() * colors.length);
         let randomColor = colors[randomIndex];
@@ -43,3 +37,15 @@ const insertButtonColors = () => {
         colors.splice(randomColorIndex, 1);
     })
 }
+
+const start = () => {
+    const rightColor = genererateRBGColor();
+    const color2 = genererateRBGColor();
+    const color3 = genererateRBGColor();
+    const colors = [rightColor, color2, color3];
+
+    insertRGBColor(rightColor);
+    insertButtonColors(colors);
+}
+
+window.onload = start();
