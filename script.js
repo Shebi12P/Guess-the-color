@@ -1,5 +1,6 @@
 const colorArea = document.getElementById('color-area');
 const buttonGroup = document.querySelector(".button-group");
+const buttons = Array.from(buttonGroup.children);
 
 const genererateRBGColor = () => {
     const MAX_VALUE = 256;
@@ -19,9 +20,7 @@ const insertRGBColor = () => {
     colorArea.style.setProperty('--bg-color', `rgb(${rightColor})`);
 }
 
-const insertButtonColors = (colors) => {
-    const buttons = Array.from(buttonGroup.children);
-    
+const insertButtonColors = (colors) => {    
     buttons.forEach((button) => {
         let randomIndex = Math.floor(Math.random() * colors.length);
         let randomColor = colors[randomIndex];
@@ -36,6 +35,10 @@ const insertButtonColors = (colors) => {
 }
 
 const start = () => {
+    buttons.forEach((button) => {
+        button.style.setProperty("--button-color", "hsl(var(--primary-clr-800))")
+    });
+    
     rightColor = genererateRBGColor();
     color2 = genererateRBGColor();
     color3 = genererateRBGColor();
@@ -46,11 +49,18 @@ const start = () => {
 }
 
 const checkAnswer = (element) => {
+    const successColor = "hsl(114, 65%, 51%)";
+    const dangerColor = "hsl(0, 65%, 51%)";
+
     if (element.target.classList.contains("button")) {
-        const selectedColor = element.target.textContent;
-        if (selectedColor === rightColor) console.log("Hura");
-        console.log(selectedColor, rightColor);
-        // else start();
+        buttons.forEach((button) => {
+            if (button.textContent === rightColor)
+                button.style.setProperty("--button-color", successColor);
+            else 
+                button.style.setProperty("--button-color", dangerColor);
+        })
+        
+        setTimeout(start, 1000);
     }
 }
 

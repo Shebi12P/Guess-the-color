@@ -30,11 +30,12 @@ h1 {
 }
 
 .button {
+    --button-color: hsl(var(--primary-clr-800));
     cursor: pointer;
     font: inherit;
     border: none;
     color: hsl(var(--neutral-clr-100));
-    background-color: hsl(var(--primary-clr-800));
+    background-color: var(--button-color);
     padding: .5rem 1rem;
     font-size: .75rem;
     border-radius: .25rem;
