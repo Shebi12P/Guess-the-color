@@ -1,25 +1,22 @@
 const colorArea = document.getElementById('color-area');
 const buttonGroup = document.querySelector(".button-group");
-// const colorButtons = document.querySelectorAll(".button-group button");
+
 const genererateRBGColor = () => {
     const MAX_VALUE = 256;
     const red = Math.floor(Math.random()*MAX_VALUE);
     const green = Math.floor(Math.random()*MAX_VALUE);
     const blue = Math.floor(Math.random()*MAX_VALUE);
 
-    return {
-        'red': red,
-        'green': green,
-        'blue': blue
-    };
+    return `${red}, ${green}, ${blue}`;
 }
 
-const insertRGBColor = (rightColor) => {
-    const red = rightColor.red;
-    const green = rightColor.green;
-    const blue = rightColor.blue;
+let rightColor = genererateRBGColor();
+let color2 = genererateRBGColor();
+let color3 = genererateRBGColor();
+let colors = [rightColor, color2, color3];
 
-    colorArea.style.setProperty('--bg-color', `rgb(${red}, ${green}, ${blue})`);
+const insertRGBColor = () => {
+    colorArea.style.setProperty('--bg-color', `rgb(${rightColor})`);
 }
 
 const insertButtonColors = (colors) => {
@@ -29,32 +26,33 @@ const insertButtonColors = (colors) => {
         let randomIndex = Math.floor(Math.random() * colors.length);
         let randomColor = colors[randomIndex];
         
-        let red = randomColor.red;
-        let green = randomColor.green;
-        let blue = randomColor.blue;
-        
-        button.textContent = `RGB(${red}, ${green}, ${blue})`;
+        button.textContent = randomColor;
 
+        //Delete a color that has been already used
         let randomColorIndex = colors.indexOf(randomColor);
         colors.splice(randomColorIndex, 1);
     });
     
 }
 
-const checkAnswer = () => {
-
-}
-
-// buttonGroup.addEventListener()
-
 const start = () => {
-    const rightColor = genererateRBGColor();
-    const color2 = genererateRBGColor();
-    const color3 = genererateRBGColor();
-    const colors = [rightColor, color2, color3];
-
+    rightColor = genererateRBGColor();
+    color2 = genererateRBGColor();
+    color3 = genererateRBGColor();
+    colors = [rightColor, color2, color3];
     insertRGBColor(rightColor);
     insertButtonColors(colors);
 }
+
+const checkAnswer = (element) => {
+    if (element.target.classList.contains("button")) {
+        const selectedColor = element.target.textContent;
+        if (selectedColor === rightColor) console.log("Hura");
+        console.log(selectedColor, rightColor)
+        // else start();
+    }
+}
+
+buttonGroup.addEventListener("click", checkAnswer)
 
 window.onload = start();
