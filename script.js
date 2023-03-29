@@ -28,7 +28,7 @@ const insertButtonColors = (colors) => {
         
         button.textContent = randomColor;
 
-        //Delete a color that has been already used
+        //Delete color that has been already used
         let randomColorIndex = colors.indexOf(randomColor);
         colors.splice(randomColorIndex, 1);
     });
@@ -40,6 +40,7 @@ const start = () => {
     color2 = genererateRBGColor();
     color3 = genererateRBGColor();
     colors = [rightColor, color2, color3];
+    
     insertRGBColor(rightColor);
     insertButtonColors(colors);
 }
@@ -48,7 +49,7 @@ const checkAnswer = (element) => {
     if (element.target.classList.contains("button")) {
         const selectedColor = element.target.textContent;
         if (selectedColor === rightColor) console.log("Hura");
-        console.log(selectedColor, rightColor)
+        console.log(selectedColor, rightColor);
         // else start();
     }
 }

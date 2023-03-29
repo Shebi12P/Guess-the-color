@@ -3,6 +3,8 @@
     --neutral-clr-100: 0, 0%, 100%;
     --primary-clr-800: 222, 60%, 25%;
     --primary-clr-900: 222, 70%, 15%;
+    --success-clr-500: 114, 65%, 51%;
+    --danger-clr-500: 0, 65%, 51%;
 }
 
 * {
