@@ -1,6 +1,6 @@
 const colorArea = document.getElementById('color-area');
-const colorButtons = document.querySelectorAll(".button-group button");
-
+const buttonGroup = document.querySelector(".button-group");
+// const colorButtons = document.querySelectorAll(".button-group button");
 const genererateRBGColor = () => {
     const MAX_VALUE = 256;
     const red = Math.floor(Math.random()*MAX_VALUE);
@@ -23,7 +23,9 @@ const insertRGBColor = (rightColor) => {
 }
 
 const insertButtonColors = (colors) => {
-    colorButtons.forEach((button) => {
+    const buttons = Array.from(buttonGroup.children);
+    
+    buttons.forEach((button) => {
         let randomIndex = Math.floor(Math.random() * colors.length);
         let randomColor = colors[randomIndex];
         
@@ -35,8 +37,15 @@ const insertButtonColors = (colors) => {
 
         let randomColorIndex = colors.indexOf(randomColor);
         colors.splice(randomColorIndex, 1);
-    })
+    });
+    
 }
+
+const checkAnswer = () => {
+
+}
+
+// buttonGroup.addEventListener()
 
 const start = () => {
     const rightColor = genererateRBGColor();
