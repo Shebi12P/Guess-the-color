@@ -47,11 +47,14 @@ button {
 }
 
 .color-area {
-    --bg-color: white;
-    --dimension: calc(6rem + 2vw);
+    --bg-color: hsl(var(--neutral-clr-100));
+    --outline-width: .25rem;
+    --dimension: calc(6rem + 2vw + var(--outline-width));
     width: var(--dimension);
     height: var(--dimension);
     background-color: var(--bg-color);
+    outline: var(--outline-width) solid hsl(var(--neutral-clr-100));
+    border-radius: .25rem;
 }
     
 /* Utility classes */
