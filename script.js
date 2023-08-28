@@ -2,19 +2,20 @@ const colorArea = document.getElementById('color-area');
 const buttonGroup = document.querySelector(".button-group");
 const buttons = Array.from(buttonGroup.children);
 
+let rightColor;
+let color2;
+let color3;
+let colors = [rightColor, color2, color3];
+
 const genererateRBGColor = () => {
     const MAX_VALUE = 256;
-    const red = Math.floor(Math.random()*MAX_VALUE);
-    const green = Math.floor(Math.random()*MAX_VALUE);
-    const blue = Math.floor(Math.random()*MAX_VALUE);
+    const red = Math.floor(Math.random() * MAX_VALUE);
+    const green = Math.floor(Math.random() * MAX_VALUE);
+    const blue = Math.floor(Math.random() * MAX_VALUE);
 
     return `${red}, ${green}, ${blue}`;
 }
 
-let rightColor = genererateRBGColor();
-let color2 = genererateRBGColor();
-let color3 = genererateRBGColor();
-let colors = [rightColor, color2, color3];
 
 const insertRGBColor = () => {
     colorArea.style.setProperty('--bg-color', `rgb(${rightColor})`);
@@ -22,19 +23,18 @@ const insertRGBColor = () => {
 
 const insertButtonColors = (colors) => {    
     buttons.forEach((button) => {
-        let randomIndex = Math.floor(Math.random() * colors.length);
-        let randomColor = colors[randomIndex];
+        let randomColorIndex = Math.floor(Math.random() * colors.length);
+        let randomColor = colors[randomColorIndex];
         
         button.textContent = randomColor;
 
         //Delete color that has been already used
-        let randomColorIndex = colors.indexOf(randomColor);
         colors.splice(randomColorIndex, 1);
     });
     
 }
 
-const start = () => {
+const init = () => {
     buttons.forEach((button) => {
         button.style.setProperty("--button-color", "hsl(var(--primary-clr-800))")
     });
@@ -48,11 +48,11 @@ const start = () => {
     insertButtonColors(colors);
 }
 
-const checkAnswer = (element) => {
+const checkAnswer = (event) => {
     const successColor = "hsl(114, 65%, 51%)";
     const dangerColor = "hsl(0, 65%, 51%)";
 
-    if (element.target.classList.contains("button")) {
+    if (event.target.classList.contains("button")) {
         buttons.forEach((button) => {
             if (button.textContent === rightColor)
                 button.style.setProperty("--button-color", successColor);
@@ -66,4 +66,4 @@ const checkAnswer = (element) => {
 
 buttonGroup.addEventListener("click", checkAnswer)
 
-window.onload = start();
+window.onload = init();
